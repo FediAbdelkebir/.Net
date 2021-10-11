@@ -3,7 +3,7 @@ using System;
 
 namespace PS.Console
 {
-     class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -16,23 +16,21 @@ namespace PS.Console
                 Email = "Fedi@Fedi.Fedi",
                 ConfirmPassword = "12",
                 IsApproved = false,
-                products = new System.Collections.Generic.List<Product>() {p2};
-
-
+                products = new System.Collections.Generic.List<Product>() { }
             };
             //P1.GetDetails();
             //Provider.SetIsApproved(P1);
-           
-            System.Console.WriteLine("methode a");
-            //
-            bool isapproved = P1.IsApproved;
-            Provider.SetIsApproved(P1.Password, P1.ConfirmPassword, ref isapproved);
-            System.Console.WriteLine("Méthode B");
-            P1.IsApproved = isapproved;
-            P1.GetDetails();
-            P1.login(P1.Password, P1.Email);
+            /* 
+              System.Console.WriteLine("methode a");
+              //
+              bool isapproved = P1.IsApproved;
+              Provider.SetIsApproved(P1.Password, P1.ConfirmPassword, ref isapproved);
+              System.Console.WriteLine("Méthode B");
+              P1.IsApproved = isapproved;
+              P1.GetDetails();
+              P1.login(P1.Password, P1.Email);
 
-
+          */
             /*
             Test T1 = new Test();
             int x =10;
@@ -46,3 +44,4 @@ namespace PS.Console
         }
     }
 }
+
