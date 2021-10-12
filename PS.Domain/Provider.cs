@@ -86,5 +86,52 @@ namespace PS.Domain
                 return false;
             }
         }
+        public void GetProducts(String Type,String Value)
+        {
+            switch (Type)
+            {
+                case("Name"):
+                    foreach (Product p in products)
+                    {
+
+                    }
+                    break;
+                case ("Description"):
+                    foreach (Product p in products)
+                    {
+
+                    }
+                    break;
+                case ("Price"):
+                    foreach (Product p in products)
+                    {
+
+                    }
+                    break;
+                case ("City"):
+                    foreach (Product p in products)
+                    {
+
+                    }
+                    break;
+                case ("DateProd"):
+                    foreach (Product p in products)
+                    {
+
+                    }break;
+                case ("ProductId"):
+                    foreach (Product p in products)
+                    {
+
+                    }
+                    break;
+                case ("Quantity"):
+                    foreach (Product p in products)
+                    {
+
+                    }
+                    break;
+            }
+        }
     }
 }
