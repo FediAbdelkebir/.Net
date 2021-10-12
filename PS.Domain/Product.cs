@@ -25,7 +25,7 @@ namespace PS.Domain
         }
         public virtual string GetType()
         {
-            return("Type : UNKNOWN");
+            return("Chemical");
         }
     }
     

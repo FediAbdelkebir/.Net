@@ -2,23 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 using PS.Domain;
+using System.Linq;
 namespace PS.Service
 {
     class ManageProvider
     {/**Ne9sa T3abbi el Liste*/
-        List<Provider> P = new List<Provider>(){};
 
-        public List<Provider> GetProviderByName(String Name)
+        public IList<Provider> Providers;
+
+        public ManageProvider(IList<Provider> P)
+        {
+        this.Providers = P;
+        }
+        /*public IList<Provider> GetProviderByName(String Name)
         {
             return P.FindAll(e => e.UserName.Equals(Name));
+            
+            var req = from p in Providers where p.UserName == Name select p;
+            return req.ToList();
+        }*/
+        public IEnumerable<Provider> GetProviderByName(String Name)
+        {
+         //   return P.FindAll(e => e.UserName.Equals(Name));
+            
+            var req = from p in Providers where p.UserName == Name select p;
+            return req;
         }
-        public List<Provider> GetFirstProviderByName(String Name)
-        {/**Ne9sa first */
-            return P.FindAll(e => e.UserName.Equals(Name));
+
+        public Provider GetFirstProviderByName(String Name)
+        {
+            var req = from p in Providers where p.UserName == Name select p;
+            return req.FirstOrDefault();
         }
+
         public Provider GetProviderById(int id)
         {
-            return P.Find(e => e.id.Equals(id));
+            var req = from p in Providers where p.id== id select p;
+            return req.SingleOrDefault();
+            
         }
     }
 }
