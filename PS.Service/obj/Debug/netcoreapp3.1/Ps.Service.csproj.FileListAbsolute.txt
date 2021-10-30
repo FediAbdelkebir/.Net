@@ -1,0 +1,16 @@
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\obj\Debug\netcoreapp3.1\Ps.Service.csprojAssemblyReference.cache
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\obj\Debug\netcoreapp3.1\Ps.Service.AssemblyInfoInputs.cache
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\obj\Debug\netcoreapp3.1\Ps.Service.AssemblyInfo.cs
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Console.exe
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\Ps.Service.deps.json
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\Ps.Service.dll
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\Ps.Service.pdb
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Console.dll
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Data.dll
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Domain.dll
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Console.pdb
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Domain.pdb
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\bin\Debug\netcoreapp3.1\PS.Data.pdb
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\obj\Debug\netcoreapp3.1\Ps.Service.csproj.CopyComplete
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\obj\Debug\netcoreapp3.1\Ps.Service.dll
+C:\Users\fedia\Desktop\Esprit\.Net\Ps.Service\obj\Debug\netcoreapp3.1\Ps.Service.pdb

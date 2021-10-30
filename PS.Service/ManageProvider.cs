@@ -1,45 +1,48 @@
-﻿using System;
+﻿using PS.Domain;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using PS.Domain;
 using System.Linq;
-namespace PS.Service
-{
-    class ManageProvider
-    {/**Ne9sa T3abbi el Liste*/
+using System.Text;
 
+namespace Ps.Service
+{
+    public class ManageProvider
+    {
         public IList<Provider> Providers;
 
-        public ManageProvider(IList<Provider> P)
+        public ManageProvider(IList<Provider> Providers)
         {
-        this.Providers = P;
-        }
-        /*public IList<Provider> GetProviderByName(String Name)
-        {
-            return P.FindAll(e => e.UserName.Equals(Name));
-            
-            var req = from p in Providers where p.UserName == Name select p;
-            return req.ToList();
-        }*/
-        public IEnumerable<Provider> GetProviderByName(String Name)
-        {
-         //   return P.FindAll(e => e.UserName.Equals(Name));
-            
-            var req = from p in Providers where p.UserName == Name select p;
-            return req;
+            this.Providers = Providers;
+                
         }
 
-        public Provider GetFirstProviderByName(String Name)
+        public IList<Provider> GetProviderByName( string name)
         {
-            var req = from p in Providers where p.UserName == Name select p;
-            return req.FirstOrDefault();
+            var query = from p in Providers where p.Username == name select p;
+            return query.ToList();
+
         }
+        //method 2
+        public IEnumerable<Provider> GetProviderByName2(string name)
+        {
+            var query = from p in Providers where p.Username == name select p;
+            return query;
+
+        }
+
+        public Provider GetFirstProviderByName(string name)
+        {
+            var query = from p in Providers where p.Username == name select p;
+            return query.FirstOrDefault();
+
+        }
+
 
         public Provider GetProviderById(int id)
         {
-            var req = from p in Providers where p.id== id select p;
-            return req.SingleOrDefault();
-            
+            var query = from p in Providers where p.Id == id select p;
+            return query.SingleOrDefault();//ordefault pour eviter une exception si il n a pas trouver aucun elément
+
         }
     }
 }

@@ -7,14 +7,12 @@ namespace PS.Domain
     public class Category:Concept
     {
         public int CategoryId { get; set; }
-        public String Name { get; set; }
-        public IList<Product> Products { get; set; }
+        public string Name { get; set; }
+        public IList<Product> MyProducts { get; set; }
 
-        
-            public override void GetDetails()
+        public override void GetDetails()
         {
-            System.Console.WriteLine(" Name: " + Name);
+            System.Console.WriteLine("Name Cat : " + Name + " , MyProducts : " + MyProducts);
         }
     }
-    
 }

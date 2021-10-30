@@ -4,17 +4,17 @@ using System.Text;
 
 namespace PS.Domain
 {
-    public class Chemical:Product 
+    public class Chemical:Product
     {
-        public String City { get; set; }
-        public String LabName { get; set; }
-        public String StreetAddress { get; set; }
-
+        public string LabName { get; set; }
+        public Address MyAddress { get; set; }
         public override void GetDetails()
         {
-            base.GetDetails();
-            System.Console.WriteLine(" LabName ; " + LabName);
+            System.Console.WriteLine("city : " + MyAddress.City + " , Lab name :" + LabName + " , Street Add : " + MyAddress.StreetAddress);
         }
-
+        public override string GetMyType()
+        {
+            return ("My type :  CHEMICAL");
+        }
     }
 }

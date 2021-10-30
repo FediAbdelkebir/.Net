@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PS.Service
+namespace Ps.Service
 {
     public class Class1
     {

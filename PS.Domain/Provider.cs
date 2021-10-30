@@ -1,137 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace PS.Domain
 {
-   public  class Provider:Concept 
+    public class Provider:Concept
     {
-        private String confirmPasswd;
-        public DateTime DateCreate { get; set; }
-        public String Email { get; set; }
-        public int id { get; set; }
-        public Boolean IsApproved { get; set; }
+        private string confirmPassword;
 
-        private String passwd;
-        public string Password
-        {
-            get { return passwd; }
-            set
-            {
-            if(value.Length>20 || value.Length < 5)
-                {
-                    System.Console.WriteLine("Mot de Pass InValide ;c");
-                }
-                else { passwd = value; }
-            }
-        }
-        
         public string ConfirmPassword
         {
-            get { return confirmPasswd; }
-            set
-            {
-                if (!value.Equals(passwd))
+            get { return confirmPassword; }
+            set {
+                if (value.CompareTo(Password)==0) 
                 {
-                    System.Console.WriteLine("Mot de Pass ne correspond pas ;c");
+                    confirmPassword = value;
                 }
-                else { confirmPasswd = value; }
+                else {
+                    System.Console.WriteLine("Confirmation incorrecte !!");
+                }
             }
         }
-        public String UserName { get; set; }
-        public IList<Product> products { get; set; }
+
+        public DateTime DateCreated { get; set; }
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        public int Id { get; set; }
+        public bool IsApproved { get; set; }
+        private string password;
+        [DataType(DataType.Password),Required,Compare("Password"),NotMapped]
+        public string Password
+        {
+            get { return password; }
+            set { 
+                if (value.Length > 20 || value.Length < 5){
+                        System.Console.WriteLine("Verifiez votre mdp svp !!");
+                        
+                    }else{
+                        password = value;
+                    }
+            }
+        }
+
+        public string Username { get; set; }
+        public IList<Product> MyProds { get; set; }
 
         public override void GetDetails()
         {
-         
-            System.Console.WriteLine(" UserName: " + UserName + " Password :" + passwd + " ConfirmePassword"+confirmPasswd+" Is Approved ? : "+IsApproved  );
-
-            if (products.Count != 0)
+            System.Console.WriteLine("Username : " + Username + " , Password : " + Password + " , Confirm Password : " + ConfirmPassword + " , IsApproved : " + IsApproved + " , My Products : \n");
+            if(MyProds == null)
             {
-                foreach (Product p in products)
+                Console.WriteLine("no product");
+            }else{
+                foreach (Product p in MyProds)
                 {
                     p.GetDetails();
                 }
             }
-            else { System.Console.WriteLine("La Liste Est Vide"); }
         }
-        public static void SetIsApproved (Provider P)
+        /*public static void SetIsApproved(Provider p)
         {
-            P.IsApproved = P.passwd.CompareTo(P.confirmPasswd) == 0;
+            p.IsApproved = p.ConfirmPassword.CompareTo(p.Password) ==0;
+        }*/
+        public void SetIsApproved(string password, string confirmPassword, ref bool isApproved)
+        {
+            isApproved = (password.CompareTo(confirmPassword) == 0);
         }
-        public static void SetIsApproved(string Password  , string confirmPassword , ref bool isApproved)
+        /*public bool Login (string username , string password)
         {
-            isApproved = Password.CompareTo(confirmPassword) == 0;
+            return (this.Username == username && this.Password == password);
         }
-        public bool login(string password,string email)
+        public bool Login(string username, string password , string email)
         {
-            if (password.Equals(passwd) && email.Equals(email))
+            return (this.Username == username && this.Password == password && this.Email==email);
+        }*/
+        public bool Login(string username, string password, string email=null)
+        {
+            if(email != null)
             {
-                return true;
+                return (this.Username == username && this.Password == password && this.Email == email);
             }
             else
             {
-                return false;
+                return (this.Username == username && this.Password == password );
             }
         }
-      
-        public bool login(string username,string password, string email)
-        {
-            if (username.Equals(username) && password.Equals(passwd) && email.Equals(email))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public void GetProducts(String Type,String Value)
-        {
-            switch (Type)
-            {
-                case("Name"):
-                    foreach (Product p in products)
-                    {
 
-                    }
-                    break;
-                case ("Description"):
-                    foreach (Product p in products)
-                    {
+       
 
-                    }
-                    break;
-                case ("Price"):
-                    foreach (Product p in products)
-                    {
-
-                    }
-                    break;
-                case ("City"):
-                    foreach (Product p in products)
-                    {
-
-                    }
-                    break;
-                case ("DateProd"):
-                    foreach (Product p in products)
-                    {
-
-                    }break;
-                case ("ProductId"):
-                    foreach (Product p in products)
-                    {
-
-                    }
-                    break;
-                case ("Quantity"):
-                    foreach (Product p in products)
-                    {
-
-                    }
-                    break;
-            }
-        }
     }
+    
 }

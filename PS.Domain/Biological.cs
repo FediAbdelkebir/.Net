@@ -6,11 +6,15 @@ namespace PS.Domain
 {
     public class Biological:Product
     {
-        public String Herbs { get; set; }
+        public string Herbs { get; set; }
+
         public override void GetDetails()
         {
-            base.GetDetails();
-            System.Console.WriteLine(" Herbs ; " + Herbs);
+            System.Console.WriteLine("Herbs  : " + Herbs );
+        }
+        public override string GetMyType()
+        {
+            return ("My type :  BIOLOGICAL");
         }
     }
 }

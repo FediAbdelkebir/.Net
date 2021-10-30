@@ -6,6 +6,8 @@ namespace PS.Domain
 {
     public abstract class Concept
     {
+        internal bool isApproved;
+
         public abstract void GetDetails();
     }
 }
