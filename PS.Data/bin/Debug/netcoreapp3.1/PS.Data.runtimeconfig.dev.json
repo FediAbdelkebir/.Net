@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\fedia\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\fedia\\.nuget\\packages",
-      "C:\\Microsoft\\Xamarin\\NuGet"
+      "C:\\Users\\HP\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\HP\\.nuget\\packages"
     ]
   }
 }

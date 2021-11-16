@@ -1,43 +1,54 @@
 ﻿using PS.Data;
+using PS.Data.Infrastructures;
 using PS.Domain;
+using ServicePattern;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using PS.Data.Infrastructure;
 using System.Linq.Expressions;
-namespace Ps.Service
+using System.Text;
+namespace PS.Service
 {
-   public class CategoryService :ICategoryService
+    public class CategoryService : Service<Category>, ICategoryService
     {
-        static DatabaseFactory context = new DatabaseFactory();
-        IRepositoryBase<Category> repo = new RepositoryBase<Category>(context);
-        public void Add(Category C)
+        /*static DatabaseFactory factory = new DatabaseFactory();
+        //IRepositoryBase<Category> repo = new RepositoryBase<Category>(factory);
+        IUnitOfWork uow = new UnitOfWork(factory);
+        public void Add(Category c)
         {
-            repo.Add(C);
-            context.DataContext.SaveChanges();
+            //factory.DataContext.Categories.Add(c);
+            //factory.DataContext.SaveChanges();
+
+            //repo.Add(c);
+            uow.getRepository<Category>().Add(c);
+            //factory.DataContext.SaveChanges();
+            uow.Commit();
         }
 
-        public void Delete(Category entity)
+        public IList<Category> GetAll()
         {
-            repo.Delete(entity);
-            context.DataContext.SaveChanges();
+            // return factory.DataContext.Categories.ToList();
+
+            //return repo.GetAll().ToList();
+            return uow.getRepository<Category>().GetAll().ToList();
         }
 
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<Category> GetAll2()
         {
-            //return context.DataContext.Categories.ToList();
-            return repo.GetAll();
+            // return factory.DataContext.Categories.ToList();
+            //return repo.GetAll();
+            return uow.getRepository<Category>().GetAll();
         }
 
-        public Category GetById(long Id)
+        public void Remove(Category c)
         {
-            throw new NotImplementedException();
-        }
-        public void Remove(Category C)
-        {
-            context.DataContext.Remove(C);
-            context.DataContext.SaveChanges();
-        }
+            //factory.DataContext.Categories.Remove(c);
+
+            //repo.Delete(c);
+            uow.getRepository<Category>().Delete(c);
+            //factory.DataContext.SaveChanges();
+            uow.Commit();
+        }*/
+
     }
 }

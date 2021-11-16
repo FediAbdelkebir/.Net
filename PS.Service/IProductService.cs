@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ps.Service
+namespace PS.Service
 {
-    interface IProductService
+    public interface IProductService
     {
-        public void Add(Product P);
-        public void Remove(Product P);
-        public IEnumerable<Product> GetAll();
+        public void Add(Product p);
+        public void Remove(Product p);
+        public IList<Product> GetAll();
+
+
     }
 }

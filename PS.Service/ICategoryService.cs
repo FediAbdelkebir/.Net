@@ -1,14 +1,15 @@
 ﻿using PS.Domain;
+using ServicePattern;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ps.Service
+namespace PS.Service
 {
-    interface ICategoryService
+    public interface ICategoryService : IService<Category>
     {
-        public void Add(Category C);
-        public void Remove(Category C);
-        public IEnumerable<Category> GetAll();
+        //public void Add(Category c);
+        //public void Remove(Category c);
+        //public IList<Category> GetAll();
     }
 }

@@ -4,85 +4,77 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Ps.Service
+namespace PS.Service
 {
-   public class ManageProduct
+    public class ManageProduct
     {
-        IList<Product> Prods;
+        public IList<Product> Products;
 
-        public ManageProduct(IList<Product> Prods)
+        public ManageProduct(IList<Product> products)
         {
-            this.Prods = Prods;   
+            this.Products = products;
         }
+
         public IEnumerable<Chemical> Get5Chemical(double price)
         {
-            var query = from p in Prods where p.Price >price && p is Chemical select p;
-            return (IEnumerable<Chemical>)query.Take(5);
-
+            var req = from p in Products where p.Price > price && p is Chemical select p;
+            return (IEnumerable<Chemical>)req.Take(5);
         }
-
-        //method2
 
         public IEnumerable<Chemical> Get5Chemical2(double price)
         {
-            var query = from p in Prods where p.Price > price && p is Chemical select p;
-            return query.OfType<Chemical>().Take(5);// oftype car sont des chemical de type product puisque p in prods
-
+            var req = from p in Products where p.Price > price && p is Chemical select p;
+            return req.OfType<Chemical>().Take(5);
         }
-        //pour eliminer le deux premier elements
+
         public IEnumerable<Product> GetProductPrice(double price)
         {
-            var query = from p in Prods where p.Price > price select p;
-            return query.Skip(2);
 
+            var req = from p in Products where p.Price > price select p;
+            return req.Skip(2);
         }
-        //Average(moyenne)
+
         public double GetAveragePrice()
         {
-            var query = from p in Prods select p.Price;
-            return query.Average();
-
+            var req = from p in Products select p.Price;
+            return req.Average();
         }
 
-        //max
         public Product GetMaxPrice()
         {
-            var query1 = from p in Prods select p.Price;//requete feha liste des prix
-            var query = from p in Prods where(p.Price == query1.Max()) select p;//on a appliquer max sur la 1er liste
-            return query.FirstOrDefault();
-
+            var req = from p in Products select p.Price;
+            double price = req.Max();
+            var req2 = from p in Products where p.Price == price select p;
+            return req2.FirstOrDefault();
         }
-        //retourne le nombre de chemical selon le nom de city
-        public int GetCountProduct(string city)
+
+        public int GetProductCount(string city)
         {
-            var query = from p in Prods where ((Chemical)p).MyAddress.City == city select p;
-            return query.Count();
-
+            var req = from p in Products where ((Chemical)p).MyAddress.City == city select p;
+            return req.Count();
         }
-        //retourne la liste des prods chemicals ordonnées par city
+
         public IEnumerable<Product> GetChemicalCity()
         {
-            var query = from p in Prods orderby ((Chemical)p).MyAddress.City select p;//caster produit de type chemical
-            return query;
-
+            var req = from p in Products orderby ((Chemical)p).MyAddress.City select p;
+            return req;
         }
 
-        //retourne la liste des prods chemicals ordonnées par city et group by city
-        public void GetChemicalGroupByCity()
+        public void GetChamicalGroupByCity()
         {
-            var query = from p in Prods
-                        orderby ((Chemical)p).MyAddress.City
-                        group (Chemical)p by ((Chemical)p).MyAddress.City;
-                    foreach(var grp in query)
+            var req = from p in Products
+                      orderby ((Chemical)p).MyAddress.City
+                      group p by ((Chemical)p).MyAddress.City;
+            foreach(var grp in req)
             {
-                Console.WriteLine(grp.Key);//key c'est city
+                Console.WriteLine(grp.Key);
                 foreach(var i in grp)
                 {
                     i.GetDetails();
                 }
-            }
-    
 
+            }
         }
+
     }
 }

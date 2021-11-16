@@ -1,38 +1,47 @@
-﻿using PS.Data;
-using PS.Data.Infrastructure;
+﻿
+using PS.Data;
+using PS.Data.Infrastructures;
 using PS.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Ps.Service
+namespace PS.Service
 {
     public class ProductService : IProductService
-        
     {
-        static IDatabaseFactory context = new DatabaseFactory();
-        IRepositoryBase<Product> repo = new RepositoryBase<Product>(context);
-        public void Add(Product P)
+        static IDatabaseFactory contexte = new DatabaseFactory();
+        //PSContexte contexte = new PSContexte();
+        IRepositoryBase<Product> repo = new RepositoryBase<Product>(contexte);
+        public void Add(Product p)
         {
-            //context.DataContext.Products.Add(P);
-            //Sauvegarder Les Données
-            repo.Add(P);
-            context.DataContext.SaveChanges();
+            //contexte.DataContext.Products.Add(p);
+            //contexte.DataContext.SaveChanges();
+
+            //contexte.Products.Add(p);
+            //contexte.SaveChanges();
+
+            repo.Add(p);
+            contexte.DataContext.SaveChanges();
+
         }
 
-        public IEnumerable<Product> GetAll()
+        public IList<Product> GetAll()
         {
-            //return context.DataContext.Set<Product>().ToList();
-            return repo.GetAll();
+            //return contexte.DataContext.Products.ToList();
+            //return contexte.DataContext.Set<Product>().ToList();
+            //return contexte.Products.ToList();
+            return repo.GetAll().ToList();
         }
 
-        public void Remove(Product P)
+        public void Remove(Product p)
         {
-            //context.DataContext.Remove(P);
-            //Sauvegarder Les Données
-            repo.Delete(P);
-            context.DataContext.SaveChanges();
+            //contexte.DataContext.Products.Remove(p);
+            //contexte.Remove(p);
+
+            repo.Delete(p);
+            contexte.DataContext.SaveChanges();
         }
     }
 }
