@@ -11,6 +11,7 @@ namespace PS.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.Property(c => c.Name).IsRequired().HasMaxLength(50).HasColumnName("MyName");
             builder.HasMany(p => p.MyProviders)
                 .WithMany(prod=>prod.MyProds)
                 .UsingEntity(e =>e.ToTable("Providing"));

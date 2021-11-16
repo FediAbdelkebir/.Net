@@ -29,11 +29,60 @@ namespace PS.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("MyName");
 
                     b.HasKey("CategoryId");
 
                     b.ToTable("MyCategorie");
+                });
+
+            modelBuilder.Entity("PS.Domain.Client", b =>
+                {
+                    b.Property<int>("CIN")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateNaissance")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prenom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CIN");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("PS.Domain.Facture", b =>
+                {
+                    b.Property<int>("ClientFK")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductFk")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAchat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Prix")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductFK")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientFK", "ProductFk", "DateAchat");
+
+                    b.HasIndex("ProductFk");
+
+                    b.ToTable("Factures");
                 });
 
             modelBuilder.Entity("PS.Domain.Product", b =>
@@ -61,8 +110,9 @@ namespace PS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("MyName");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -141,6 +191,25 @@ namespace PS.Data.Migrations
                     b.HasDiscriminator().HasValue("Chemical");
                 });
 
+            modelBuilder.Entity("PS.Domain.Facture", b =>
+                {
+                    b.HasOne("PS.Domain.Client", "Client")
+                        .WithMany("Factures")
+                        .HasForeignKey("ClientFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PS.Domain.Product", "Product")
+                        .WithMany("Factures")
+                        .HasForeignKey("ProductFk")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("PS.Domain.Product", b =>
                 {
                     b.HasOne("PS.Domain.Category", "MyCat")
@@ -198,6 +267,16 @@ namespace PS.Data.Migrations
             modelBuilder.Entity("PS.Domain.Category", b =>
                 {
                     b.Navigation("MyProducts");
+                });
+
+            modelBuilder.Entity("PS.Domain.Client", b =>
+                {
+                    b.Navigation("Factures");
+                });
+
+            modelBuilder.Entity("PS.Domain.Product", b =>
+                {
+                    b.Navigation("Factures");
                 });
 #pragma warning restore 612, 618
         }

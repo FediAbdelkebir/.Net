@@ -13,7 +13,7 @@ namespace PS.Data.Configuration
         {
             builder.ToTable ("MyCategorie" );
             builder.HasKey(c=>c.CategoryId);
-            builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
+            builder.Property(c => c.Name).IsRequired().HasMaxLength(50).HasColumnName("MyName");
         }
     }
 }

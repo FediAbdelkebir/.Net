@@ -148,3 +148,5 @@ C:\Users\fedia\Desktop\Esprit\.Net\PS.Console\obj\Debug\netcoreapp3.1\PS.Console
 C:\Users\fedia\Desktop\Esprit\.Net\PS.Console\obj\Debug\netcoreapp3.1\PS.Console.pdb
 C:\Users\fedia\Desktop\Esprit\.Net\PS.Console\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\fedia\Desktop\Esprit\.Net\PS.Console\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\fedia\Desktop\Esprit\.Net\PS.Console\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\fedia\Desktop\Esprit\.Net\PS.Console\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll

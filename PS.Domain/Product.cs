@@ -22,11 +22,12 @@ namespace PS.Domain
         public int Quantity { get; set; }
         public string ImageName { get; set; }
 
-        public Category MyCat { get; set; }
+        public virtual Category MyCat { get; set; }
 
-        public IList<Provider> MyProviders { get; set; }
+        public virtual IList<Provider> MyProviders { get; set; }
         [ForeignKey("MyCat")]
         public int? CategoryId { get; set; }
+        public virtual IList<Facture> Factures { get; set; }
         public override void GetDetails()
         {
             System.Console.WriteLine("Name : " + Name);

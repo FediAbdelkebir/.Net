@@ -8,7 +8,7 @@ namespace PS.Domain
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }
-        public IList<Product> MyProducts { get; set; }
+        public virtual IList<Product> MyProducts { get; set; }
 
         public override void GetDetails()
         {
