@@ -4,11 +4,9 @@ using System.Text;
 
 namespace PS.Data.Infrastructure
 {
-   public class Disposable:IDisposable
+    public class Disposable : IDisposable
     {
-
-        #region IDisposable Support
-        private bool disposedValue = false; // Pour détecter les appels redondants
+        private bool disposedValue;
 
         protected virtual void Dispose(bool disposing)
         {
@@ -16,34 +14,34 @@ namespace PS.Data.Infrastructure
             {
                 if (disposing)
                 {
+                    // TODO: dispose managed state (managed objects)
                     DisposeCore();
+
                 }
 
-                // TODO: libérer les ressources non managées (objets non managés) et remplacer un finaliseur ci-dessous.
-                // TODO: définir les champs de grande taille avec la valeur Null.
-
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
                 disposedValue = true;
             }
         }
 
-        // TODO: remplacer un finaliseur seulement si la fonction Dispose(bool disposing) ci-dessus a du code pour libérer les ressources non managées.
-         ~Disposable()
-         {
-           Dispose(disposing:false);
-        }
-
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
-        public void Dispose()
-        {
-            // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.
-            Dispose(true);
-            // TODO: supprimer les marques de commentaire pour la ligne suivante si le finaliseur est remplacé ci-dessus.
-            // GC.SuppressFinalize(this);
-        }
         protected virtual void DisposeCore()
         {
-            //insert code
+            
         }
-        #endregion
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+         ~Disposable()
+         {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+             Dispose(disposing: false);
+         }
+
+        public  void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

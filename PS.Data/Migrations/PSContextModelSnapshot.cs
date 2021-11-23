@@ -16,7 +16,7 @@ namespace PS.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("PS.Domain.Category", b =>
@@ -34,7 +34,7 @@ namespace PS.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("MyCategorie");
+                    b.ToTable("MyCategories");
                 });
 
             modelBuilder.Entity("PS.Domain.Client", b =>
@@ -47,10 +47,10 @@ namespace PS.Data.Migrations
                     b.Property<DateTime>("DateNaissance")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prenom")
@@ -58,31 +58,32 @@ namespace PS.Data.Migrations
 
                     b.HasKey("CIN");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Client");
                 });
 
             modelBuilder.Entity("PS.Domain.Facture", b =>
                 {
-                    b.Property<int>("ClientFK")
+                    b.Property<DateTime>("DateAchat")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("ClientFk")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductFk")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateAchat")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("Prix")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductFK")
-                        .HasColumnType("int");
+                    b.HasKey("DateAchat", "ClientFk", "ProductFk");
 
-                    b.HasKey("ClientFK", "ProductFk", "DateAchat");
+                    b.HasIndex("ClientFk");
 
                     b.HasIndex("ProductFk");
 
-                    b.ToTable("Factures");
+                    b.ToTable("Facture");
                 });
 
             modelBuilder.Entity("PS.Domain.Product", b =>
@@ -101,17 +102,13 @@ namespace PS.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageName")
+                    b.Property<string>("Image2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)")
                         .HasColumnName("MyName");
 
                     b.Property<double>("Price")
@@ -125,8 +122,6 @@ namespace PS.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
             modelBuilder.Entity("PS.Domain.Provider", b =>
@@ -136,39 +131,41 @@ namespace PS.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ConfirmPassword")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Provider");
+                    b.ToTable("Providers");
                 });
 
             modelBuilder.Entity("ProductProvider", b =>
                 {
-                    b.Property<int>("MyProdsProductId")
+                    b.Property<int>("ProductsProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MyProvidersId")
+                    b.Property<int>("ProvidersId")
                         .HasColumnType("int");
 
-                    b.HasKey("MyProdsProductId", "MyProvidersId");
+                    b.HasKey("ProductsProductId", "ProvidersId");
 
-                    b.HasIndex("MyProvidersId");
+                    b.HasIndex("ProvidersId");
 
-                    b.ToTable("Providing");
+                    b.ToTable("Providings");
                 });
 
             modelBuilder.Entity("PS.Domain.Biological", b =>
@@ -178,7 +175,7 @@ namespace PS.Data.Migrations
                     b.Property<string>("Herbs")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Biological");
+                    b.ToTable("Biologicals");
                 });
 
             modelBuilder.Entity("PS.Domain.Chemical", b =>
@@ -188,14 +185,14 @@ namespace PS.Data.Migrations
                     b.Property<string>("LabName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Chemical");
+                    b.ToTable("Chemicals");
                 });
 
             modelBuilder.Entity("PS.Domain.Facture", b =>
                 {
                     b.HasOne("PS.Domain.Client", "Client")
                         .WithMany("Factures")
-                        .HasForeignKey("ClientFK")
+                        .HasForeignKey("ClientFk")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -212,30 +209,45 @@ namespace PS.Data.Migrations
 
             modelBuilder.Entity("PS.Domain.Product", b =>
                 {
-                    b.HasOne("PS.Domain.Category", "MyCat")
-                        .WithMany("MyProducts")
+                    b.HasOne("PS.Domain.Category", "MyCategory")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId");
 
-                    b.Navigation("MyCat");
+                    b.Navigation("MyCategory");
                 });
 
             modelBuilder.Entity("ProductProvider", b =>
                 {
                     b.HasOne("PS.Domain.Product", null)
                         .WithMany()
-                        .HasForeignKey("MyProdsProductId")
+                        .HasForeignKey("ProductsProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PS.Domain.Provider", null)
                         .WithMany()
-                        .HasForeignKey("MyProvidersId")
+                        .HasForeignKey("ProvidersId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PS.Domain.Biological", b =>
+                {
+                    b.HasOne("PS.Domain.Product", null)
+                        .WithOne()
+                        .HasForeignKey("PS.Domain.Biological", "ProductId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("PS.Domain.Chemical", b =>
                 {
+                    b.HasOne("PS.Domain.Product", null)
+                        .WithOne()
+                        .HasForeignKey("PS.Domain.Chemical", "ProductId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
                     b.OwnsOne("PS.Domain.Address", "MyAddress", b1 =>
                         {
                             b1.Property<int>("ChemicalProductId")
@@ -251,11 +263,11 @@ namespace PS.Data.Migrations
                             b1.Property<string>("StreetAddress")
                                 .HasMaxLength(50)
                                 .HasColumnType("nvarchar(50)")
-                                .HasColumnName("MyAddress");
+                                .HasColumnName("MyStreet");
 
                             b1.HasKey("ChemicalProductId");
 
-                            b1.ToTable("Products");
+                            b1.ToTable("Chemicals");
 
                             b1.WithOwner()
                                 .HasForeignKey("ChemicalProductId");
@@ -266,7 +278,7 @@ namespace PS.Data.Migrations
 
             modelBuilder.Entity("PS.Domain.Category", b =>
                 {
-                    b.Navigation("MyProducts");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("PS.Domain.Client", b =>

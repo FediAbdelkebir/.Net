@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PS.Data.Infrastructure
 {
-   public class DatabaseFactory : Disposable, IDatabaseFactory
+    public class DatabaseFactory : Disposable , IDatabaseFactory
     {
         private PSContext dataContext;
         public PSContext DataContext
@@ -15,8 +15,8 @@ namespace PS.Data.Infrastructure
         public DatabaseFactory() { dataContext = new PSContext(); }
         protected override void DisposeCore()
         {
-            if (dataContext != null)//si existe une instance
-                dataContext.Dispose();//ferler cnx avec bd,libérer memoire
+            if (dataContext != null)
+                dataContext.Dispose();
         }
     }
 }

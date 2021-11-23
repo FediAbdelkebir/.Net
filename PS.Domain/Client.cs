@@ -7,11 +7,14 @@ namespace PS.Domain
 {
     public class Client
     {[Key]
-        public int CIN {get; set;}
-        public DateTime DateNaissance {get; set;}
-        public string Name { get; set; }
+        public int CIN { get; set; }
+        public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string Email { get; set; }
+        public DateTime DateNaissance { get; set; }
+        public string Mail { get; set; }
+        //prop de navigation
+        public virtual IList<Product> Products { get; set; }
         public virtual IList<Facture> Factures { get; set; }
+
     }
 }

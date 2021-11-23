@@ -4,9 +4,10 @@ using System.Text;
 
 namespace PS.Data.Infrastructure
 {
-    public interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork :IDisposable
     {
         void Commit();
+        //void Dispose(); Hidden from IDisposable interface
         IRepositoryBase<T> getRepository<T>() where T : class;
     }
 }

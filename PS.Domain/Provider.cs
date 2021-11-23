@@ -6,90 +6,36 @@ using System.Text;
 
 namespace PS.Domain
 {
-    public class Provider:Concept
+    public class Provider : Concept
     {
-        private string confirmPassword;
+        [NotMapped]
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [DataType(DataType.Password)]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
 
-        public string ConfirmPassword
-        {
-            get { return confirmPassword; }
-            set {
-                if (value.CompareTo(Password)==0) 
-                {
-                    confirmPassword = value;
-                }
-                else {
-                    System.Console.WriteLine("Confirmation incorrecte !!");
-                }
-            }
-        }
-
+        [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
-        [DataType(DataType.EmailAddress)]
+        [Required, EmailAddress]
         public string Email { get; set; }
+        [Key]   // optional !
         public int Id { get; set; }
         public bool IsApproved { get; set; }
-        private string password;
-        [DataType(DataType.Password),Required,Compare("Password"),NotMapped]
-        public string Password
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        [MinLength(8)]
+        public string Password { get; set; }
+        public string UserName { get; set; }
+        public virtual IList<Product> Products { get; set; }
+
+        public override string ToString()
         {
-            get { return password; }
-            set { 
-                if (value.Length > 20 || value.Length < 5){
-                        System.Console.WriteLine("Verifiez votre mdp svp !!");
-                        
-                    }else{
-                        password = value;
-                    }
-            }
+            return "Id: " + this.Id + "\n Name: " + this.UserName;
         }
-
-        public string Username { get; set; }
-        public virtual IList<Product> MyProds { get; set; }
-
         public override void GetDetails()
         {
-            System.Console.WriteLine("Username : " + Username + " , Password : " + Password + " , Confirm Password : " + ConfirmPassword + " , IsApproved : " + IsApproved + " , My Products : \n");
-            if(MyProds == null)
-            {
-                Console.WriteLine("no product");
-            }else{
-                foreach (Product p in MyProds)
-                {
-                    p.GetDetails();
-                }
-            }
-        }
-        /*public static void SetIsApproved(Provider p)
-        {
-            p.IsApproved = p.ConfirmPassword.CompareTo(p.Password) ==0;
-        }*/
-        public void SetIsApproved(string password, string confirmPassword, ref bool isApproved)
-        {
-            isApproved = (password.CompareTo(confirmPassword) == 0);
-        }
-        /*public bool Login (string username , string password)
-        {
-            return (this.Username == username && this.Password == password);
-        }
-        public bool Login(string username, string password , string email)
-        {
-            return (this.Username == username && this.Password == password && this.Email==email);
-        }*/
-        public bool Login(string username, string password, string email=null)
-        {
-            if(email != null)
-            {
-                return (this.Username == username && this.Password == password && this.Email == email);
-            }
-            else
-            {
-                return (this.Username == username && this.Password == password );
-            }
-        }
+            System.Console.WriteLine("Password:" + Password + " ConfirmPassword:" + ConfirmPassword + " IsApproved:" + IsApproved);
 
-       
-
+        }
     }
-    
 }

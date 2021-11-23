@@ -9,22 +9,20 @@ namespace PS.Data.Configurations
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
+
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            //ManyToMany
-            builder.HasMany(prod => prod.Providers)
-                .WithMany(prov => prov.Products)  //relation many-many
-                .UsingEntity(e => e.ToTable("Providing")); //table d'association
-            //OneToMany
-            builder.HasOne(prod => prod.MyCategory)
-                .WithMany(cat => cat.Products) //relation one-many
-                .HasForeignKey(prod => prod.CatId)
-                .OnDelete(DeleteBehavior.ClientSetNull); //yab9ou l données just l clé étrangère ywali null 
-            //
-            /*builder.HasDiscriminator<int>("IsBiological")
-                .HasValue<Biological>(1)
-                .HasValue<Chemical>(2)
-                .HasValue<Product>(0);*/
+            //Many to Many
+            builder.HasMany(p => p.Providers)
+            .WithMany(v => v.Products)
+            .UsingEntity(
+                j => j.ToTable("Providings"));//Table d'association
+
+            //One To Many
+            builder.HasOne(p => p.MyCategory)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull);// the values of foreign key properties in dependent entities are set to null when the related principal is deleted
 
             //Many to Many 
             builder.HasMany(p => p.Clients)
@@ -37,14 +35,15 @@ namespace PS.Data.Configurations
                 j => j
                     .HasOne(f => f.Product)
                     .WithMany(p => p.Factures)
-                    .HasForeignKey(p => p.ProductFK),
+                    .HasForeignKey(p => p.ProductFk),
                 j =>
                 {
                     j.Property(f => f.DateAchat).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                    j.HasKey(f => new { f.DateAchat, f.ClientFk, f.ProductFK });
+                    j.HasKey(f => new { f.DateAchat, f.ClientFk, f.ProductFk });
                 });
 
-        }
 
+            //builder.Property(p => p.Name).HasColumnName("MyName");
+        }
     }
 }

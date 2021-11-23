@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PS.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using PS.Domain;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PS.Data.Configurations
 {
@@ -11,17 +11,20 @@ namespace PS.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Facture> builder)
         {
-            builder.HasKey(f => new {
+            builder.HasKey(f => new
+            {
+                f.DateAchat,
                 f.ClientFk,
-                f.ProductFK,
-                f.DateAchat
+                f.ProductFk
             });
+
             builder.HasOne(f => f.Client)
-                .WithMany(c => c.Factures)
-                .HasForeignKey(f => f.ClientFk);
+            .WithMany(c => c.Factures)
+            .HasForeignKey(f => f.ClientFk);
+
             builder.HasOne(f => f.Product)
-                .WithMany(c => c.Factures)
-                .HasForeignKey(f => f.ProductFK);
+           .WithMany(p => p.Factures)
+           .HasForeignKey(f => f.ProductFk);
         }
     }
 }

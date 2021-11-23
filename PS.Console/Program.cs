@@ -1,7 +1,8 @@
-﻿using PS.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PS.Data;
 using PS.Domain;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace PS.Console
 {
@@ -9,64 +10,53 @@ namespace PS.Console
     {
         static void Main(string[] args)
         {
+            System.Console.WriteLine("Hello World!");
 
+            Scenario1();
+
+        }
+        static void Scenario1()
+        {
             using (var context = new PSContext())
             {
-
+                //context.Database.EnsureCreated();
+                //context.Database.Migrate();
+                //Create
                 System.Console.WriteLine("Create");
-
-                Product P = new Product
-                {
-                    Name = "Prod1",
-                    DateProd = DateTime.Now
-                };
+                //Instancier un objet Category
+                Category C = new Category { Name = "Cat1" };
+                //Instancier un objet Product
+                Product P = new Product { Name = "Prod1", DateProd = DateTime.Now, MyCategory=C };
+                //Ajouter l'objet au DBSET
                 context.Products.Add(P);
-
+                //Persister les données
                 context.SaveChanges();
-                Product P2 = new Product
+
+                //Read All
+                System.Console.WriteLine("Read All");
+                foreach (Product p in context.Products)
                 {
-                    Name = "Prod2",
-                    DateProd = DateTime.Now
-                };
-                context.Products.Add(P2);
+                    System.Console.WriteLine(p.ProductId + " " + p.Name);
+                }
 
+                //Read Last
+                System.Console.WriteLine("Read Last");
+                var prod = context.Products.OrderBy(p => p.ProductId)
+                    .Last();
+                System.Console.WriteLine(prod.ProductId + " " + prod.Name + " " + prod.MyCategory.Name);
+
+                // Update
+                System.Console.WriteLine("Update");
+                prod.Name = "newName";
                 context.SaveChanges();
+                System.Console.WriteLine(prod.ProductId + " " + prod.Name);
+
+                // Delete
+                //System.Console.WriteLine("Delete the product");
+                //context.Remove(prod);
+                //context.SaveChanges();
+
             }
-            
         }
-        
-            //System.Console.WriteLine("Hello SAE4 !!");
-            //Product p2 = new Product
-            //{
-            //    Name = "water"
-            //};
-            //Provider P1 = new Provider
-            //{
-            //    Username = "Ahmed",
-            //    Email = "Ahmedbannour77@gmail.com",
-            //    Password = "12345",
-            //    ConfirmPassword = "12345",
-            //    IsApproved = false,
-            //    MyProds = new List<Product>() {p2}
-            //};
-            //*P1.GetDetails();
-            //Provider.SetIsApproved(P1);
-            //P1.GetDetails();*
-            //P1.GetDetails();
-            //System.Console.WriteLine(P1.Login("Ahmed", "123456"));
-            //System.Console.WriteLine(P1.Login("Ahmed", "12345", "Ahmedbannour77@gmail.com"));
-            //*bool isApprved = P1.IsApproved;
-            //P1.SetIsApproved(P1.Password, P1.ConfirmPassword, ref isApprved);
-            //P1.IsApproved = isApprved;
-            //P1.GetDetails();*
-            //Product Prod1 = new Product{};
-            //System.Console.WriteLine(Prod1.GetMyType()); 
-            //Chemical ch1 = new Chemical { };
-            //System.Console.WriteLine(ch1.GetMyType());
-            //Biological bio1 = new Biological { };
-            //System.Console.WriteLine(bio1.GetMyType());
-
-
-
-        }
+    }
 }

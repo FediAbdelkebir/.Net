@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 
 namespace PS.Data.Infrastructure
@@ -14,12 +13,10 @@ namespace PS.Data.Infrastructure
         {
             get
             {
-                return
-_dbFactory.DataContext.Set<T>();
+                return _dbFactory.DataContext.Set<T>();
             }
         }
-        public RepositoryBase(IDatabaseFactory
-        dbFactory)
+        public RepositoryBase(IDatabaseFactory dbFactory)
         {
             _dbFactory = dbFactory;
         }
@@ -27,49 +24,54 @@ _dbFactory.DataContext.Set<T>();
         {
             dbset.Add(entity);
         }
-        public virtual void Update(T entity)
-        {
-            dbset.Attach(entity);
-            _dbFactory.DataContext.Entry(entity).State =
-            EntityState.Modified;
-        }
+
         public virtual void Delete(T entity)
         {
             dbset.Remove(entity);
         }
-        public virtual void Delete(Expression<Func<T,
-        bool>> where)
+
+        public virtual void Delete(System.Linq.Expressions.Expression<Func<T, bool>> where)
         {
-            IEnumerable<T> objects =
-            dbset.Where<T>(where).AsEnumerable();
+            IEnumerable<T> objects = dbset.Where<T>(where).AsEnumerable();
+
             foreach (T obj in objects)
+                
                 dbset.Remove(obj);
+
         }
-        public virtual T GetById(long id)
+
+        public virtual T Get(System.Linq.Expressions.Expression<Func<T, bool>> where)
         {
-            return dbset.Find(id);
+            return dbset.Where(where).FirstOrDefault<T>();
         }
-        public virtual T GetById(string id)
-        {
-            return dbset.Find(id);
-        }
+
         public virtual IEnumerable<T> GetAll()
         {
             return dbset.AsEnumerable();
         }
-        public virtual IEnumerable<T>
-        GetMany(Expression<Func<T, bool>> condition =
-        null)
+
+        public virtual T GetById(long id)
+        {
+            return dbset.Find(id);
+        }
+
+        public virtual T GetById(string id)
+        {
+            return dbset.Find(id);
+        }
+
+        public virtual IEnumerable<T> GetMany(System.Linq.Expressions.Expression<Func<T, bool>> where)
         {
             IQueryable<T> mydbset = dbset;
-            if (condition != null)
-                mydbset = mydbset.Where(condition);
+            if (where != null)
+                mydbset = mydbset.Where(where);
             return mydbset.AsEnumerable();
         }
-        public virtual T Get(Expression<Func<T, bool>> where)
+
+        public virtual void Update(T entity)
         {
-            return
-            dbset.Where(where).FirstOrDefault<T>();
+            dbset.Attach(entity);
+            _dbFactory.DataContext.Entry(entity).State = EntityState.Modified;
         }
     }
 }
