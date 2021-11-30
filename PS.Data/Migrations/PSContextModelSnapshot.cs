@@ -8,7 +8,7 @@ using PS.Data;
 
 namespace PS.Data.Migrations
 {
-    [DbContext(typeof(PSContext))]
+    [DbContext(typeof(PSContexte))]
     partial class PSContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

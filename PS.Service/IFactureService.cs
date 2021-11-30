@@ -6,9 +6,7 @@ using System.Text;
 
 namespace PS.Service
 {
-    interface IFactureService : IServices<Facture>
+    public interface IFactureService : IService<Facture>
     {
-
-
     }
 }

@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Service\\PS.Service.csproj": {}
+    "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Service\\PS.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj": {
+    "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj",
+        "projectUniqueName": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj",
         "projectName": "PS.Data",
-        "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\obj\\",
+        "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj",
+        "packagesPath": "C:\\Users\\fedia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fedia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -26,10 +30,9 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj": {
-                "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj"
+              "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj": {
+                "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj"
               }
             }
           }
@@ -42,31 +45,20 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Proxies": {
-              "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[5.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[5.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[5.0.11, )"
             }
           },
           "imports": [
@@ -84,22 +76,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.120\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj": {
+    "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj",
         "projectName": "PS.Domain",
-        "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\obj\\",
+        "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj",
+        "packagesPath": "C:\\Users\\fedia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fedia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -110,7 +106,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -122,31 +117,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "System.ComponentModel.Annotations": {
-              "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[5.0.11, )"
             }
           },
           "imports": [
@@ -164,22 +138,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.120\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Service\\PS.Service.csproj": {
+    "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Service\\PS.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Service\\PS.Service.csproj",
+        "projectUniqueName": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Service\\PS.Service.csproj",
         "projectName": "PS.Service",
-        "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Service\\PS.Service.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Service\\obj\\",
+        "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Service\\PS.Service.csproj",
+        "packagesPath": "C:\\Users\\fedia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fedia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -190,16 +168,15 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj": {
-                "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj"
+              "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj": {
+                "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj"
               },
-              "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj": {
-                "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Domain\\PS.Domain.csproj"
+              "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj": {
+                "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Domain\\PS.Domain.csproj"
               },
-              "C:\\Users\\PC\\Downloads\\ProductStore\\ServicePattern\\ServicePattern.csproj": {
-                "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\ServicePattern\\ServicePattern.csproj"
+              "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\ServicePattern\\ServicePattern.csproj": {
+                "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\ServicePattern\\ServicePattern.csproj"
               }
             }
           }
@@ -212,7 +189,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -228,22 +210,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.120\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Downloads\\ProductStore\\ServicePattern\\ServicePattern.csproj": {
+    "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\ServicePattern\\ServicePattern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Downloads\\ProductStore\\ServicePattern\\ServicePattern.csproj",
+        "projectUniqueName": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\ServicePattern\\ServicePattern.csproj",
         "projectName": "ServicePattern",
-        "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\ServicePattern\\ServicePattern.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Downloads\\ProductStore\\ServicePattern\\obj\\",
+        "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\ServicePattern\\ServicePattern.csproj",
+        "packagesPath": "C:\\Users\\fedia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\ServicePattern\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\fedia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -254,10 +240,9 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj": {
-                "projectPath": "C:\\Users\\PC\\Downloads\\ProductStore\\PS.Data\\PS.Data.csproj"
+              "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj": {
+                "projectPath": "C:\\Users\\fedia\\Desktop\\Esprit\\.Net\\PS.Data\\PS.Data.csproj"
               }
             }
           }
@@ -270,7 +255,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -286,7 +270,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.120\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -9,7 +9,7 @@ using PS.Data;
 
 namespace PS.Data.Migrations
 {
-    [DbContext(typeof(PSContext))]
+    [DbContext(typeof(PSContexte))]
     [Migration("20211109085222_TP4")]
     partial class TP4
     {

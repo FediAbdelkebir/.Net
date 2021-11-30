@@ -6,14 +6,13 @@ using System.Text;
 
 namespace PS.Service
 {
-    public interface IProductService : IServices<Product>
+    public interface IProductService : IService<Product>
     {
         //public void Add(Product p);
         //public void Remove(Product p);
-        public IEnumerable<Product> FindMost5ExpensiveProds();
+        //public IList<Product> GetAll();
+        public IEnumerable<Product> FindMost5ExpensiveProds(double price);
         public float UnavailableProductsPercentage();
         public IEnumerable<Product> GetProdsByClient(Client c);
-        //public IEnumerable<Product> GetAll ();
-        //Replaced with IService
     }
 }

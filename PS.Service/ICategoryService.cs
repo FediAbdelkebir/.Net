@@ -6,13 +6,10 @@ using System.Text;
 
 namespace PS.Service
 {
-    public interface ICategoryService : IServices<Category>
+    public interface ICategoryService : IService<Category>
     {
         //public void Add(Category c);
         //public void Remove(Category c);
-
-        //public IEnumerable<Category> GetAll();
-        
-        //*****replaced with IServices****
+        //public IList<Category> GetAll();
     }
 }
